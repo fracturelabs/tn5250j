@@ -139,7 +139,9 @@
     <!-- To use debugging add the debug="true" parameter to javac            -->
     <!-- =================================================================== -->
     <target name="compile" depends="prepare" description="Compile your source-files">
-        <javac srcdir="${source.dir}" target="${compile.target}" source="${compile.source}"
+    	<property name="SSL" value="${SSL}"/>
+    	<property name="showNonDisplay" value="${showNonDisplay}"/>
+    	<javac srcdir="${source.dir}" target="${compile.target}" source="${compile.source}"
                debug="${debug}"
                destdir="${build.classes.dir}"
                excludes="**/Cvs/**,**/*.ini"

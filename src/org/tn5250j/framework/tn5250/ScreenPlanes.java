@@ -58,7 +58,9 @@ public class ScreenPlanes {
     private char[] errorLineAttr;
     private char[] errorLineIsAttr;
     private char[] errorLineGui;
-
+    
+    private final boolean showNonDisplay = Boolean.parseBoolean(System.getenv("showNonDisplay"));
+    
     public ScreenPlanes(Screen5250 s5250, int size) {
 
         scr = s5250;
@@ -383,6 +385,12 @@ public class ScreenPlanes {
 
         }
 
+        // Override non-display
+        if (showNonDisplay && nd == EXTENDED_5250_NON_DSP) {
+        	nd = 0;
+        	c = ATTR_41;
+        }
+        
         screenColor[pos] = c;
         screenExtended[pos] = (char) (ul | cs | nd);
     }

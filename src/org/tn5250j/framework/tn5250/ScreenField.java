@@ -27,6 +27,8 @@ package org.tn5250j.framework.tn5250;
 
 public class ScreenField {
 
+    private final boolean showNonDisplay = Boolean.parseBoolean(System.getenv("showNonDisplay"));
+
     protected ScreenField(Screen5250 s) {
 
         this.s = s;
@@ -310,7 +312,7 @@ public class ScreenField {
 
     public boolean isBypassField() {
 
-        return (ffw1 & 0x20) == 0x20;
+        return ! this.showNonDisplay && (ffw1 & 0x20) == 0x20;
 
     }
 
